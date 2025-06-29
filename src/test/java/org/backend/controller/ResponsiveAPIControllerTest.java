@@ -1,6 +1,7 @@
 package org.backend.controller;
 
 import org.backend.dto.BaseResponse;
+import org.backend.dto.response.SseResponse;
 import org.backend.service.ResponsiveAPIService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -24,7 +25,11 @@ class ResponsiveAPIControllerTest {
 
     @Test
     void 반응형_API_조회를_요청한다() {
-        Flux<String> expected = Flux.just("Successfully Connected", "H", "ello", "World!");
+        Flux<SseResponse> expected = Flux.just(
+                new SseResponse("Successfully Connected", false),
+                new SseResponse("H", false),
+                new SseResponse("ello", false),
+                new SseResponse("World!", true));
 
         Mockito.when(responsiveAPIService.getHelloWorldMessage())
                 .thenReturn(expected);
@@ -34,15 +39,15 @@ class ResponsiveAPIControllerTest {
                 .accept(MediaType.TEXT_EVENT_STREAM)
                 .exchange()
                 .expectStatus().isOk()
-                .returnResult(new ParameterizedTypeReference<BaseResponse<String>>() {})
+                .returnResult(new ParameterizedTypeReference<BaseResponse<SseResponse>>() {})
                 .getResponseBody()
                 .collectList()
                 .as(StepVerifier::create)
                 .expectNextMatches(list -> list.size() == 4 &&
-                        list.get(0).data().equals("Successfully Connected") &&
-                        list.get(1).data().equals("H") &&
-                        list.get(2).data().equals("ello") &&
-                        list.get(3).data().equals("World!"))
+                        list.get(0).data().equals(new SseResponse("Successfully Connected", false)) &&
+                        list.get(1).data().equals(new SseResponse("H", false)) &&
+                        list.get(2).data().equals(new SseResponse("ello", false)) &&
+                        list.get(3).data().equals(new SseResponse("World!", true)))
                 .verifyComplete();
     }
 }
