@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import reactor.test.StepVerifier;
 
-@SpringBootTest
+@SpringBootTest(properties = "KAFKA_GROUP_ID=test")
 class ResponsiveAPIServiceTest {
 
     @Autowired
