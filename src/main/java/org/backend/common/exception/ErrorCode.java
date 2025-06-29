@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public enum ErrorCode {
 
+    KAFKA_JSON_PROCESSING_EXCEPTION(HttpStatus.INTERNAL_SERVER_ERROR, "메시지 직렬화 중 예외가 발생했습니다."),
     INTERNAL_EXCEPTION(HttpStatus.INTERNAL_SERVER_ERROR, "예상치 못한 예외가 발생했습니다.");
 
     private final HttpStatus httpStatus;
