@@ -1,5 +1,7 @@
 package org.backend.dto;
 
-public record ChatMessage(String nickname, String message, String timestamp) {
+import org.backend.constant.ChatType;
+
+public record ChatMessage(ChatType type, String nickname, String message, String timestamp) {
 
 }
