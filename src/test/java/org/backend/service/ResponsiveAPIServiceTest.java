@@ -1,6 +1,7 @@
 package org.backend.service;
 
 import java.time.Duration;
+import org.backend.dto.response.SseResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,13 +17,13 @@ class ResponsiveAPIServiceTest {
     void 문자열을_딜레이와_함께_3번에_거쳐_응답한다() {
         StepVerifier.withVirtualTime(() -> responsiveAPIService.getHelloWorldMessage())
                 .expectSubscription()
-                .expectNext("Successfully Connected")
+                .expectNext(new SseResponse("Successfully Connected", false))
                 .thenAwait(Duration.ofSeconds(3))
-                .expectNext("H")
+                .expectNext(new SseResponse("H", false))
                 .thenAwait(Duration.ofSeconds(2))
-                .expectNext("ello")
+                .expectNext(new SseResponse("ello", false))
                 .thenAwait(Duration.ofSeconds(1))
-                .expectNext("World!")
+                .expectNext(new SseResponse("World!", true))
                 .verifyComplete();
     }
 }
