@@ -1,1 +1,9 @@
-spring.application.name=backend
+spring:
+  application:
+    name: backend
+  webflux:
+    base-path: /api
+
+cors:
+  allowed-origins:
+    - http://localhost:5173
