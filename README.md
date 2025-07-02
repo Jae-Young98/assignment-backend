@@ -3,7 +3,7 @@
 JDK : 17  
 Spring Boot : 3.3.13
 cp-kafka : 8.0.x
-> 과제2를 로컬에서 구동하기 위해선 카프카 컨테이너를 구동해야 합니다.
+> 과제2 시연을 위해선 카프카 컨테이너 구동과 `application.yml`의 `{KAFKA_GROUP_ID}` 변수를 지정해야 합니다.
 >```bash
 >docker compose up -d
 >```
