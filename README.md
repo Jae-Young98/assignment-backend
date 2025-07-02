@@ -39,7 +39,7 @@ Servlet 기반인 `assertThat`등의 검증은 논블로킹 응답을 테스트�
 
 ## 과제2 - Kafka를 활용한 채팅 서버
 ### Preview
-![ezgif-13d2132fea14fe](https://github.com/user-attachments/assets/71428387-c818-4677-9dec-20c91ab5f922)
+![ezgif-13d2132fea14fe](https://github.com/user-attachments/assets/71428387-c818-4677-9dec-20c91ab5f922)   
 [동영상](https://github.com/user-attachments/assets/86ba67f8-3146-474a-8746-b0b4e0dd6992)
 
 ### Requirements
